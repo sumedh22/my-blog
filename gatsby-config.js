@@ -7,17 +7,21 @@ module.exports = {
   ],
   // Customize your site metadata:
   siteMetadata: {
-    title: `My Blog Title`,
-    author: `My Name`,
+    title: `My Blog`,
+    author: `Sumedh Chakravorty`,
     description: `My site description...`,
     social: [
       {
-        name: `twitter`,
-        url: `https://twitter.com/gatsbyjs`,
+        name: `linkedIn`,
+        url: `https://www.linkedin.com/in/sumedh-chakravorty/`,
+      },
+      {
+        name: `Medium`,
+        url: `https://medium.com/@sumedhchaccravorty/`,
       },
       {
         name: `github`,
-        url: `https://github.com/gatsbyjs`,
+        url: `https://github.com/sumedh22`,
       },
     ],
   },
