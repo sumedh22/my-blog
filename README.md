@@ -7,7 +7,9 @@
   Starter for the official Gatsby blog theme
 </h1>
 
-Quickly get started using the Gatsby blog theme! This starter creates a new Gatsby site that is preconfigured to work with the [official Gatsby blog theme](https://www.npmjs.com/package/gatsby-theme-blog).
+Quickly get started using the Gatsby blog theme! This starter creates a new Gatsby site that is preconfigured to work with the [official Gatsby blog theme](https://www.npmjs.com/package/gatsby-theme-blog). [![Netlify Status](https://api.netlify.com/api/v1/badges/951b76ea-7ff1-41aa-b015-d53404c92926/deploy-status)](https://app.netlify.com/sites/sumedh/deploys)
+
+
 
 ## 🚀 Quick start
 
