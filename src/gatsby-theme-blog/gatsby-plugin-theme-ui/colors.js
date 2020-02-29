@@ -13,12 +13,12 @@ const blueGray = `#282c35`
 
 export default merge(defaultThemeColors, {
   text: blueGray,
-  primary: '#ff5874',
+  primary: '#80cbc4',
   heading: blueGray,
   modes: {
     dark: {
       background: blueGray,
-      primary: lightBlue,
+      primary: '#ffa7c4',
       highlight: lightBlue,
     },
   },
