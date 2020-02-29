@@ -9,10 +9,10 @@ module.exports = {
   siteMetadata: {
     title: `My Blog`,
     author: `Sumedh Chakravorty`,
-    description: `My site description...`,
+    description: `Blog about React, Oracle JET, VBCS...`,
     social: [
       {
-        name: `linkedIn`,
+        name: `LinkedIn`,
         url: `https://www.linkedin.com/in/sumedh-chakravorty/`,
       },
       {
@@ -20,7 +20,7 @@ module.exports = {
         url: `https://medium.com/@sumedhchaccravorty/`,
       },
       {
-        name: `github`,
+        name: `GitHub`,
         url: `https://github.com/sumedh22`,
       },
     ],
