@@ -1,6 +1,6 @@
 ---
 title: How to assign variables from JS in VBCS
-date: 2019-12-15
+date: 2019-12-05
 ---
 
 In VBCS you should not assign variables in JS, but some times we need to!. Let’s say you are subscribing to WebSocket data in your JS PageModule and you need to assign that data to a VBCS variable so that you could use it in your application. Or, you have an event listener which you are subscribing in your PageModule and you want to pass down the value to a VBCS variable when the event handler is invoked. In both the cases, you should fire a custom event from your JS, with the data you want to pass (optionally). Lets see how.

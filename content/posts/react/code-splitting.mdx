@@ -1,0 +1,34 @@
+---
+title: Code splitting in react 🪓
+date: 2020-03-01
+---
+
+Code splitting lets you prioritize what needs to be loaded when. When your app is initially loaded, you might want to avoid loading
+pages which user might not even visit. React, under the hood, uses webpack to bundle all the components into a single file which is then served to
+the client -- thats exactly what we don't want. As the number of pages in your app increases, your bundle size also increases which has direct impact on your sites initial load and performance.
+The soution is to lazily load a component.
+
+
+
+## React.lazy & React.Suspense
+
+Using [dynamic import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) statements you can exclude components from the main bundle and load them lazily.
+
+Webpack is designed to split the bundle in such cases so the resources can be loaded on demand.
+
+```jsx
+import React from 'react'
+import Loader from './components/Loader'
+
+const LazyComponent = React.lazy(() => import('./pages/LazyComponentPage'));
+
+return (
+    <React.Suspense fallback={<Loader />}>
+        <Preference />
+    </React.Suspense>
+    )
+```
+
+
+Notice how _LazyComponent_ is not imported at the top of the page and **React.lazy-ly** loads it using the dynamic import
+statement. **React.lazy** component needs to be wrapped inside **React.Suspense** which can show a proper loader or user feedback while the component is being loaded.
