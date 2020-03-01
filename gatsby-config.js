@@ -24,6 +24,7 @@ module.exports = {
         url: `https://github.com/sumedh22`,
       },
     ],
-    keywords:['React','reactJs','Oracle','Oracle JET','JET','VBCS','Visual Builder', 'Oracle VBCS', 'VBS','Oracle VBS','Visual Builder Studio','Sumedh','Sumedh Chakravorty','Sumedh\' Blog']
+    keywords:['React','reactJs','Oracle','Oracle JET','JET','VBCS','Visual Builder', 'Oracle VBCS', 'VBS','Oracle VBS','Visual Builder Studio','Sumedh','Sumedh Chakravorty','Sumedh\' Blog'],
+  
   },
 }
