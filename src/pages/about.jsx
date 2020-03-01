@@ -23,6 +23,10 @@ export default ({ children, ...props }) => {
                 <Styled.li><Styled.a target="_blank" href="https://medium.com/@sumedhchaccravorty/">Medium</Styled.a></Styled.li>
                 <Styled.li><Styled.a target="_blank" href="https://github.com/sumedh22">GitHub</Styled.a></Styled.li>
             </Styled.ul>
+            <Styled.h2>Résumé</Styled.h2>
+            <Styled.a href={'../../content/assets/downloads/Sumedh_Chakravorty.pdf'} download>
+            Sumedh Chakravorty
+            </Styled.a>
         </div>
 
     </Styled.root>
