@@ -10,5 +10,6 @@ export default () => (
   <Fragment>
     <Styled.a as={Link} to={"/about"}>Sumedh Chakravorty</Styled.a>
     <br/> Product Manager @Oracle, I blog about web development
+    <br/> React, Oracle JET, Oracle VBCS
   </Fragment>
 )

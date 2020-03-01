@@ -1,10 +1,12 @@
 import React from "react"
 import { Styled, css } from "theme-ui"
 import Header from 'gatsby-theme-blog/src/components/header'
+import SEO from 'gatsby-theme-blog/src/components/seo'
 
 export default ({ children, ...props }) => {
     return <Styled.root>
-        <Header title="My Blog" {...props} />
+        <SEO title="About"/>
+        <Header title="My Dev Blog" {...props} />
         <div
             css={css({
                 maxWidth: `container`,
@@ -15,7 +17,7 @@ export default ({ children, ...props }) => {
         >
             <Styled.h1>About Me</Styled.h1>
             <Styled.p>
-            Currently working as Product Manager for Oracle VBCS, helping teams in Oracle build next generation apps.
+            Currently working as Product Manager for Oracle VBCS, helping teams in Oracle build next generation apps. Views are my own.
             </Styled.p>
             <Styled.h2>Social</Styled.h2>
             <Styled.ul>
@@ -23,7 +25,7 @@ export default ({ children, ...props }) => {
                 <Styled.li><Styled.a target="_blank" href="https://medium.com/@sumedhchaccravorty/">Medium</Styled.a></Styled.li>
                 <Styled.li><Styled.a target="_blank" href="https://github.com/sumedh22">GitHub</Styled.a></Styled.li>
             </Styled.ul>
-            <Styled.h2>Résumé</Styled.h2>
+            <Styled.h2>Resumé</Styled.h2>
             <Styled.a href={'../../content/assets/downloads/Sumedh_Chakravorty.pdf'} download>
             Sumedh Chakravorty
             </Styled.a>

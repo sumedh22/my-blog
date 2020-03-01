@@ -10,8 +10,9 @@ const Footer = ({ socialLinks }) => (
   >
     © {new Date().getFullYear()}, Powered by
     {` `}
-    <Styled.a href="https://www.gatsbyjs.org">Gatsby</Styled.a>
-  
+    <Styled.a target="_blank" href="https://www.gatsbyjs.org">Gatsby</Styled.a>
+    {` , Hosted with ❤️ on `}
+    <Styled.a target="_blank" href="https://www.netlify.com">Netlify</Styled.a>
   </footer>
 )
 export default Footer

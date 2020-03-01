@@ -1,0 +1,30 @@
+---
+title: How to filter data using multiple attributes in VBCS
+excerpt: How to implement custom fetch using service data provider transforms in vbcs and query accross multiple fields
+date: 2019-12-16
+---
+
+Out of the box, in VBCS the filtering will be enabled for the label attribute specified in options-keys.label for controls like oj-select-one oj-select-many oj-combobox-one oj-combobox-may. What if you want to filter the data based on some other attributes or multiple attributes?
+
+## Using Service Data Provider Transforms
+
+Each of the above controls, when created using from a rest endpoint will have service data provider (SDP) variable created. In this example we will use transform functions to manipulate the auto-generated query which by default uses the aforementioned label attribute.
+
+![vbcs page module](../../assets/posts/vbcs/2_1.png)
+
+Select the {} to view the page metadata json where you can locate the lovListSDP variable. Make the below changes to it to enable transforms.
+
+![vbcs page module](../../assets/posts/vbcs/2_2.png)
+
+Define the requestFilter and responsePaginate functions in your PageModule, this is where the request and response will be handled.
+
+![vbcs page module](../../assets/posts/vbcs/2_3.png)
+
+For the demo, user entered values in the Select One will be queried against the fields: tag, description and name (which is the label)
+
+## Additionally…
+
+Based on your requirement, you can also utilise the other transform functions such as sort, paginate, query, select, body for request transform and body for response transform.
+
+## Version
+VBCS: 19.1.3
