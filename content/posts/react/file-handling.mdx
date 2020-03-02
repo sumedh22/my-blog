@@ -1,0 +1,137 @@
+---
+title: File handling in react 📁
+date: 2020-03-02
+excerpt: Step by step guide to handling files in react
+---
+Truth be told its pretty straight-forward, but it comes pretty handy if you forgot the [FileReader](https://developer.mozilla.org/en-US/docs/Web/API/FileReader) API :/
+
+## Create a component
+We are using functional component + hooks and the code (kinda) looks like this:
+
+```jsx
+import React from 'react';
+
+function FileUpload() {
+    const [file, setFile] = React.useState({
+        name: '',
+        type: '',
+        size: 0,
+        data: ''
+    });
+    const fileChangeHandler = e => {}
+    return <React.Fragment>
+        <input type="file" onChange={fileChangeHandler} />
+    </React.Fragment>
+}
+
+export default FileUpload;
+```
+Using state to save the selected file details, i have an input element with a file change handler which we will implement next.
+
+## Implement fileChangeHandler
+
+The fileChangeHandler is going to receive a synthetic event and we are going to read the files that are being selected.
+Ofcourse for reading file you need a FileReader instance. lets add it to our component.
+
+```js
+const fr = new FileReader();
+
+const fileChangeHandler = e => {
+    if (e.target.files.length) {
+      const file = e.target.files[0];
+      fr.readAsDataURL(file)
+      fr.onloadend = e => {
+        setFile({
+          name: file.name,
+          type: file.type,
+          size: file.size,
+          data: e.target.result
+        })
+      }
+    }
+  }
+```
+In our Implementation we are handling only the first file user has selected. We are reading the file as data url which results into a base64 encoded version of the file.
+We are also adding a listener for onloadend to update our state with the file data.
+
+## Previewing the file
+You might want to allow users to see what they have selected and maybe allow them to remove it as well. 
+We will add a button to remove the file.
+
+```jsx
+const fileRemoveHandler = e => {}
+
+<div style={...}>
+      <button ... onClick={fileRemoveHandler} style={...}>X</button>
+      <h2>{file.name}</h2>
+    </div>
+```
+
+## Implement fileRemoveHandler
+We need to remove file by clearing the state and resetting the input element. To reset the input, we are using ref to get hold of the component 'the react way'
+
+```jsx
+const input = React.useRef();
+
+const fileRemoveHandler = e=>{
+    input.current.value = '';
+    setFile({
+      name: '',
+      type: '',
+      size: 0,
+      data: ''
+    })
+  }
+
+return <input ref={input} type="file" onChange={fileChangeHandler} />
+```
+
+## Final component
+Here's how it all comes together
+```jsx
+import React from 'react';
+
+function FileUpload() {
+  const [file, setFile] = React.useState({
+    name: '',
+    type: '',
+    size: 0,
+    data: ''
+  });
+  const fr = new FileReader();
+  const input = React.useRef();
+
+  const fileChangeHandler = e => {
+    if (e.target.files.length) {
+      const file = e.target.files[0];
+      fr.readAsDataURL(file)
+      fr.onloadend = e => {
+        setFile({
+          name: file.name,
+          type: file.type,
+          size: file.size,
+          data: e.target.result
+        })
+      }
+    }
+  }
+  const fileRemoveHandler = e=>{
+    input.current.value = '';
+    setFile({
+      name: '',
+      type: '',
+      size: 0,
+      data: ''
+    })
+  }
+  return <React.Fragment>
+    <input ref={input} type="file" onChange={fileChangeHandler} />
+    <div style={{backgroundRepeat:'no-repeat',backgroundPosition:'center',backgroundSize: 'contain', backgroundImage: `url(${file.data})`, height: '20em', width: '15em', border: '1px solid darkgray', borderRadius: '10px', margin:'auto',marginTop:'5em' }}>
+      <button aria-label="remove image" title="remove image" onClick={fileRemoveHandler} style={{float:'right'}}>X</button>
+      <h2>{file.name}</h2>
+    </div>
+  </React.Fragment>
+}
+
+export default FileUpload;
+```
