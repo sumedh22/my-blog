@@ -1,0 +1,210 @@
+---
+title: Create a countdown timer in React ⏱
+excerpt: learn how to implement timer with setInterval in React
+date: 2020-03-02
+---
+We will be using functional component + hook for building this component. setInterval will be used for core timer.
+
+## Create a component
+The code (kinda) looks like this. the timer (state) tracks the timer status. user can start/play or pause the timer.
+```jsx
+import React from 'react'
+
+function Timer() {
+  const [timer, setTimer] = React.useState({
+    name: '',
+    isPaused: false,
+    time: 0,
+    timeRemaining: 0
+  })
+  const handleTimerCreate = e => {
+  }
+  return <React.Fragment>
+    <input type="text" onChange={handleTimerCreate} />
+    <div>
+      // render current timer details and actions
+    </div>
+  </React.Fragment>
+}
+
+export default Timer;
+```
+
+## timer logic
+
+we are using browsers built-in setInterval for timer logic. we are also keeping track of the timerHandler.
+
+```js
+ const handleStart = e => {
+    const handle = setInterval(updateTimeRemaining, 1000);
+    setTimer({ ...timer, isPaused: false, timerHandler: handle })
+  }
+```
+
+we update the state with the interval handle, so that we can later clear it when it times out or its paused.
+
+```js
+const handlePause = e => {
+    clearInterval(timer.timerHandler)
+    setTimer({ ...timer, isPaused: true })
+  }
+```
+
+## timer card and actions
+The timner card is visible when name and time is provided, when timeRemaining is 0 we add styles for timeout animations.
+the actions available on the timer are start/play and pause.
+
+```jsx
+{timer.name && timer.time && 
+<div className={timer.timeRemaining === 0 ? 'time-out':''} style={classes.card}>
+      <h3>{timer.name}</h3>
+      <h2>{timer.time}</h2>
+      {timer.isPaused && <div onClick={handleStart}><img alt="play" src={play}/></div>}
+      {!timer.isPaused && <div onClick={handlePause}><img alt="pause" src={pause}/> </div>}
+      <h1>{`Time remaining ${timer.timeRemaining}`}</h1>
+    </div>}
+```
+
+### Action : start
+
+In the start/play action we are using setInterval with callback and timeout set to 1000ms. The callback handles the the updating of timeRemaining.
+
+```js
+ const updateTimeRemaining = e => {
+    setTimer(prev => {
+      return { ...prev, timeRemaining: prev.timeRemaining - 1 }
+    })
+  }
+```
+
+
+### Action : pause
+
+In pause handler, we are clearning the timerHandler and setting the timer as paused.
+
+```js
+const handlePause = e => {
+    clearInterval(timer.timerHandler)
+    setTimer({ ...timer, isPaused: true })
+  }
+```
+
+## Handle timeout
+
+We are using useEffect hook for tracking timeRemaining and updating timer state based on timeRemaining.
+
+```js
+React.useEffect(() => {
+    if (timer.timeRemaining === 0) {
+      clearInterval(timer.timerHandler)
+    }
+  }, [timer.timeRemaining, timer.timerHandler])
+```
+
+## The final component
+
+```jsx
+import React from 'react';
+import './App.css';
+import pause from './pause.svg'
+import play from './play.svg'
+const classes = {
+  card: {
+    height: '20em',
+    width: '10em',
+    border: '1px solid #5353ca',
+    borderRadius: '10px',
+    backgroundColor: '#5353ca',
+    margin: 'auto',
+    marginTop: '5em',
+    color: 'white',
+    padding: '10px',
+    boxShadow:'-1px 1px 7px 3px #0000003d '
+  }
+}
+function Timer() {
+  const [timer, setTimer] = React.useState({
+    name: 'ee',
+    isPaused: true,
+    time: 100,
+    timeRemaining: 100,
+    timerHandler: null
+  })
+  const handleTimerCreate = e => {
+    setTimer({
+      ...timer,
+      name: e.target.value
+    })
+  }
+  const handleTimeChange = e => {
+    setTimer({
+      ...timer,
+      time: Number(e.target.value),
+      timeRemaining: Number(e.target.value),
+    })
+  }
+  React.useEffect(() => {
+    if (timer.timeRemaining === 0) {
+      clearInterval(timer.timerHandler)
+    }
+  }, [timer.timeRemaining, timer.timerHandler])
+
+ 
+  const updateTimeRemaining = e => {
+    setTimer(prev => {
+      return { ...prev, timeRemaining: prev.timeRemaining - 1 }
+    })
+  }
+
+  const handleStart = e => {
+    const handle = setInterval(updateTimeRemaining, 1000);
+    setTimer({ ...timer, isPaused: false, timerHandler: handle })
+  }
+
+  const handlePause = e => {
+    clearInterval(timer.timerHandler)
+    setTimer({ ...timer, isPaused: true })
+  }
+  return <React.Fragment>
+    <input value={timer.name} type="text" onChange={handleTimerCreate} />
+
+    <input value={timer.time} type="number" onChange={handleTimeChange} />
+
+    {timer.name && timer.time && <div className={timer.timeRemaining === 0 ? 'time-out':''} style={classes.card}>
+      <h3>{timer.name}</h3>
+      <h2>{timer.time}</h2>
+      {timer.isPaused && <div onClick={handleStart}><img alt="play" src={play}/></div>}
+      {!timer.isPaused && <div onClick={handlePause}><img alt="pause" src={pause}/> </div>}
+      <h1>{`Time remaining ${timer.timeRemaining}`}</h1>
+    </div>}
+
+  </React.Fragment>
+}
+```
+### styles
+```css
+.time-out {
+  animation: shake 0.92s cubic-bezier(.36,.07,.19,.97) infinite;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+```
