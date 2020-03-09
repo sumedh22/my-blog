@@ -17,11 +17,25 @@ module.exports = {
         display: `standalone`,
         icon: `content/assets/logo.png`, // This path is relative to the root of the site.
       },
-      
+
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-sitemap`,
     'gatsby-plugin-robots-txt',
+    {
+      resolve: "gatsby-plugin-firebase",
+      options: {
+        credentials: {
+          apiKey: "AIzaSyA694bjygkkVX_PpYZ8mT2HV7kfAwkEC7E",
+          authDomain: "blog-984e9.firebaseapp.com",
+          databaseURL: "https://blog-984e9.firebaseio.com",
+          projectId: "blog-984e9",
+          storageBucket: "blog-984e9.appspot.com",
+          messagingSenderId: "548016220721",
+          appId: "1:548016220721:web:5203299faa67e0e4730310"
+        }
+      }
+    }
   ],
   // Customize your site metadata:
   siteMetadata: {
@@ -43,7 +57,7 @@ module.exports = {
         url: `https://github.com/sumedh22`,
       },
     ],
-    keywords:['React','reactJs','Oracle','Oracle JET','JET','VBCS','Visual Builder', 'Oracle VBCS', 'VBS','Oracle VBS','Visual Builder Studio','Sumedh','Sumedh Chakravorty','Sumedh\' Blog'],
-  
+    keywords: ['React', 'reactJs', 'Oracle', 'Oracle JET', 'JET', 'VBCS', 'Visual Builder', 'Oracle VBCS', 'VBS', 'Oracle VBS', 'Visual Builder Studio', 'Sumedh', 'Sumedh Chakravorty', 'Sumedh\' Blog'],
+
   },
 }

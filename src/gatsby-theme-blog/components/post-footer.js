@@ -1,10 +1,10 @@
 import React from "react"
 import { Link } from "gatsby"
 import { css, Styled, Flex } from "theme-ui"
-
+import Comments from '../../component/Comments';
 import Bio from "gatsby-theme-blog/src/components/bio"
 
-const Footer = ({ previous, next }) => (
+const Footer = ({ previous, next, post }) => (
   <footer
     css={css({
       mt: 4,
@@ -12,6 +12,7 @@ const Footer = ({ previous, next }) => (
     })}
   >
     <Styled.hr />
+    <Comments {...post}/>
     <Bio />
     {(previous || next) && (
       <Flex
@@ -40,6 +41,7 @@ const Footer = ({ previous, next }) => (
         </li>
       </Flex>
     )}
+    
   </footer>
 )
 
