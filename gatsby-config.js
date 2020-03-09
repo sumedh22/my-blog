@@ -20,12 +20,15 @@ module.exports = {
       
     },
     `gatsby-plugin-offline`,
+    `gatsby-plugin-sitemap`,
+    'gatsby-plugin-robots-txt',
   ],
   // Customize your site metadata:
   siteMetadata: {
     title: `My Dev Blog`,
     author: `Sumedh Chakravorty`,
     description: `Developer blog about React, Oracle JET, Oracle VBCS...`,
+    siteUrl: 'https://sumedh.netlify.com/',
     social: [
       {
         name: `LinkedIn`,
