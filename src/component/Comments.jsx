@@ -18,7 +18,10 @@ export default ({slug}) => {
         })
       }, [slug])
 
-    return <Styled.ul style={{ listStyle: 'none' , margin:0}}>
+    return <>
+    <Styled.h2>Comments</Styled.h2>
+    {!comments.length && <Styled.h5>No comments have been posted yet</Styled.h5>}
+    <Styled.ul style={{ listStyle: 'none' , margin:0}}>
         {comments.map(com => {
             return <Styled.li style={{boxShadow:'0px 0px 6px -2px', padding:'1em'}} key={com.id}>
                 
@@ -31,4 +34,5 @@ export default ({slug}) => {
             <Comment slug={slug}/>
         </Styled.li>
     </Styled.ul>
+    </>
 }
